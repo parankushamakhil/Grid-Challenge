@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Grid Challenge Game - Test Your Memory</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Test your visual memory and pattern recognition skills with the Grid Challenge Game">
+    <meta name="theme-color" content="#218085">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen active">
+        <div class="game-header">
+            <h1>Grid Challenge Game</h1>
+            <p class="game-subtitle">Test your visual memory and pattern recognition skills</p>
+        </div>
+        
+        <div class="instructions-card">
+            <h2>How to Play</h2>
+            <div class="instructions-content">
+                <div class="instruction-item">
+                    <h3>🔍 Memory Phase</h3>
+                    <p>Watch highlighted dots (in black) and memorize their positions</p>
+                </div>
+                
+                <div class="instruction-item">
+                    <h3>🔄 Symmetry Phase</h3>
+                    <p>Determine if two grids are symmetrical (YES/NO)</p>
+                </div>
+                
+                <div class="instruction-item">
+                    <h3>🎯 Recall Phase</h3>
+                    <p>Click dots in the same sequence you saw them highlighted</p>
+                </div>
+                
+                <div class="scoring-info">
+                    <h3>Scoring</h3>
+                    <p>Earn 1 point only when ALL phases in a round are completed correctly. No partial credit awarded.</p>
+                </div>
+                
+                <div class="duration-info">
+                    Duration: <strong>6 minutes</strong>
+                </div>
+            </div>
+            
+            <button id="startButton" class="btn btn--primary btn--lg btn--full-width">
+                Start Game
+            </button>
+        </div>
+    </div>
+
+    <!-- Level Selection Screen -->
+    <div id="levelScreen" class="screen">
+        <div class="game-header">
+            <h1>Choose Your Challenge</h1>
+            <p class="game-subtitle">Choose your challenge level for the 6-minute test</p>
+        </div>
+        
+        <div class="level-selection-grid">
+            <div class="level-card" data-level="1">
+                <h3>Level 1 - Beginner</h3>
+                <div class="level-details">
+                    <p><strong>2 dots</strong> to memorize</p>
+                    <p><strong>30 seconds</strong> per round</p>
+                    <p>Pattern: Memory → Symmetry → Memory → Symmetry → Recall</p>
+                </div>
+                <button class="level-select-btn btn btn--primary" data-level="1">
+                    Select Level 1
+                </button>
+            </div>
+            
+            <div class="level-card" data-level="2">
+                <h3>Level 2 - Intermediate</h3>
+                <div class="level-details">
+                    <p><strong>3 dots</strong> to memorize</p>
+                    <p><strong>39 seconds</strong> per round</p>
+                    <p>Pattern: (Memory → Symmetry) × 3 → Recall</p>
+                </div>
+                <button class="level-select-btn btn btn--primary" data-level="2">
+                    Select Level 2
+                </button>
+            </div>
+            
+            <div class="level-card" data-level="3">
+                <h3>Level 3 - Advanced</h3>
+                <div class="level-details">
+                    <p><strong>4 dots</strong> to memorize</p>
+                    <p><strong>48 seconds</strong> per round</p>
+                    <p>Pattern: (Memory → Symmetry) × 4 → Recall</p>
+                </div>
+                <button class="level-select-btn btn btn--primary" data-level="3">
+                    Select Level 3
+                </button>
+            </div>
+            
+            <div class="level-card" data-level="4">
+                <h3>Level 4 - Expert</h3>
+                <div class="level-details">
+                    <p><strong>5 dots</strong> to memorize</p>
+                    <p><strong>57 seconds</strong> per round</p>
+                    <p>Pattern: (Memory → Symmetry) × 5 → Recall</p>
+                </div>
+                <button class="level-select-btn btn btn--primary" data-level="4">
+                    Select Level 4
+                </button>
+            </div>
+        </div>
+        
+        <div class="level-selection-footer">
+            <p>High Score: <span id="highScoreValue">0</span></p>
+            <button id="backToStartButton" class="btn btn--secondary">
+                Back to Instructions
+            </button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <!-- Game UI Bar -->
+        <div class="game-ui">
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Time:</span>
+                    <span class="stat-value" id="timer">6:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Level:</span>
+                    <span class="stat-value" id="currentLevel">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Phase:</span>
+                    <span class="stat-value" id="currentPhase">Memory</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Round:</span>
+                    <span class="stat-value" id="currentRound">1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dot Grid Phase -->
+        <div id="dotGridPhase" class="phase-container">
+            <div class="phase-instruction">
+                <h2 id="dotPhaseTitle">Memorize the highlighted dot</h2>
+                <div class="phase-timer" id="dotPhaseTimer">3</div>
+            </div>
+            <div id="dotGrid" class="dot-grid"></div>
+        </div>
+
+        <!-- Symmetry Phase -->
+        <div id="symmetryPhase" class="phase-container hidden">
+            <div class="phase-instruction">
+                <h2>Are these grids symmetrical?</h2>
+                <div class="phase-timer" id="symmetryPhaseTimer">6</div>
+            </div>
+            <div class="symmetry-container">
+                <div class="symmetry-grids">
+                    <div id="leftGrid" class="symmetry-grid"></div>
+                    <div id="rightGrid" class="symmetry-grid"></div>
+                </div>
+                <div class="symmetry-buttons">
+                    <button id="yesButton" class="btn btn--lg">YES</button>
+                    <button id="noButton" class="btn btn--lg">NO</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Identification Phase -->
+        <div id="identificationPhase" class="phase-container hidden">
+            <div class="phase-instruction">
+                <h2>Click the dots in the correct sequence</h2>
+                <div class="phase-timer" id="identifyPhaseTimer">12</div>
+            </div>
+            <div id="identifyGrid" class="dot-grid"></div>
+            <div class="sequence-info">
+                Sequence: <span id="sequenceDisplay">-</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Screen -->
+    <div id="endScreen" class="screen">
+        <div class="game-header">
+            <h1>Game Complete!</h1>
+            <p class="game-subtitle">Here are your results</p>
+        </div>
+        
+        <div class="results-card">
+            <h2>Final Results</h2>
+            
+            <div class="results-stats">
+                <div class="result-stat">
+                    <span class="result-label">Final Score:</span>
+                    <span class="result-value" id="finalScore">0</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Rounds Attempted:</span>
+                    <span class="result-value" id="roundsAttempted">0</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Rounds Completed:</span>
+                    <span class="result-value" id="roundsCompleted">0</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Accuracy:</span>
+                    <span class="result-value" id="accuracy">0%</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Level Completed:</span>
+                    <span class="result-value" id="levelCompleted">1</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-label">Time Played:</span>
+                    <span class="result-value" id="timePlayed">0:00</span>
+                </div>
+            </div>
+            
+            <div class="performance-message">
+                <p id="performanceText">Great job!</p>
+            </div>
+            
+            <button id="playAgainButton" class="btn btn--primary btn--lg btn--full-width">
+                Play Again
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
