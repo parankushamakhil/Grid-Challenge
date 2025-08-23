@@ -160,37 +160,41 @@ class GridChallengeGame {
     updateGridConfig() {
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
+        const availableHeight = screenHeight - 200; // More conservative buffer
+        const availableWidth = screenWidth - 40; // Account for padding
         
         if (screenWidth <= 480) {
-            // Small phones
-            this.config.gridConfig = {
-                totalDots: Math.max(20, Math.min(40, this.config.gridConfig.totalDots)),
-                gridWidth: 240,
-                gridHeight: 180
-            };
+          // Small phones - very conservative
+          this.config.gridConfig = {
+            totalDots: Math.max(15, Math.min(25, this.config.gridConfig.totalDots)),
+            gridWidth: Math.min(250, availableWidth * 0.85),
+            gridHeight: Math.min(180, availableHeight * 0.5)
+          };
         } else if (screenWidth <= 768) {
-            // Large phones / tablets
-            this.config.gridConfig = {
-                totalDots: Math.max(30, Math.min(50, this.config.gridConfig.totalDots)),
-                gridWidth: 400,
-                gridHeight: 300
-            };
+          // Tablets
+          this.config.gridConfig = {
+            totalDots: Math.max(25, Math.min(40, this.config.gridConfig.totalDots)),
+            gridWidth: Math.min(350, availableWidth * 0.8),
+            gridHeight: Math.min(260, availableHeight * 0.6)
+          };
         } else if (screenWidth <= 1024) {
-            // Small tablets
-            this.config.gridConfig = {
-                totalDots: Math.max(40, Math.min(55, this.config.gridConfig.totalDots)),
-                gridWidth: 550,
-                gridHeight: 412
-            };
+          // Small desktops
+          this.config.gridConfig = {
+            totalDots: Math.max(35, Math.min(50, this.config.gridConfig.totalDots)),
+            gridWidth: Math.min(450, availableWidth * 0.7),
+            gridHeight: Math.min(340, availableHeight * 0.65)
+          };
         } else {
-            // Desktop
-            this.config.gridConfig = {
-                totalDots: 60,
-                gridWidth: 752,
-                gridHeight: 552
-            };
+          // Large desktops
+          this.config.gridConfig = {
+            totalDots: 60,
+            gridWidth: 500, // Reduced from 600
+            gridHeight: 375 // Reduced from 450
+          };
         }
-    }
+      }
+      
+      
 
     // Refresh current phase after resize
     refreshCurrentPhase() {
