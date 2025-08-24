@@ -1,132 +1,110 @@
-/* Enhanced Grid Challenge Game - Harder Symmetry & Progressive Memory Difficulty */
+/* Enhanced Grid Challenge Game - Selective Blue & White Theme with Level Unlocking */
 
 :root {
-  /* Primitive Color Tokens */
+  /* Blue & White Color Palette for UI Screens */
   --color-white: rgba(255, 255, 255, 1);
   --color-black: rgba(0, 0, 0, 1);
+  --color-blue-50: rgba(239, 246, 255, 1);
+  --color-blue-100: rgba(219, 234, 254, 1);
+  --color-blue-200: rgba(191, 219, 254, 1);
+  --color-blue-300: rgba(147, 197, 253, 1);
+  --color-blue-400: rgba(96, 165, 250, 1);
+  --color-blue-500: rgba(59, 130, 246, 1);
+  --color-blue-600: rgba(37, 99, 235, 1);
+  --color-blue-700: rgba(29, 78, 216, 1);
+  --color-blue-800: rgba(30, 64, 175, 1);
+  --color-blue-900: rgba(30, 58, 138, 1);
+
+  --color-gray-50: rgba(249, 250, 251, 1);
+  --color-gray-100: rgba(243, 244, 246, 1);
+  --color-gray-200: rgba(229, 231, 235, 1);
+  --color-gray-300: rgba(209, 213, 219, 1);
+  --color-gray-400: rgba(156, 163, 175, 1);
+  --color-gray-500: rgba(107, 114, 128, 1);
+  --color-gray-600: rgba(75, 85, 99, 1);
+  --color-gray-700: rgba(55, 65, 81, 1);
+  --color-gray-800: rgba(31, 41, 55, 1);
+  --color-gray-900: rgba(17, 24, 39, 1);
+
+  /* Original Game Colors (Keep for rounds/phases) */
   --color-cream-50: rgba(252, 252, 249, 1);
   --color-cream-100: rgba(255, 255, 253, 1);
-  --color-gray-200: rgba(245, 245, 245, 1);
-  --color-gray-300: rgba(167, 169, 169, 1);
-  --color-gray-400: rgba(119, 124, 124, 1);
-  --color-slate-500: rgba(98, 108, 113, 1);
-  --color-brown-600: rgba(94, 82, 64, 1);
-  --color-charcoal-700: rgba(31, 33, 33, 1);
-  --color-charcoal-800: rgba(38, 40, 40, 1);
-  --color-slate-900: rgba(19, 52, 59, 1);
   --color-teal-300: rgba(50, 184, 198, 1);
   --color-teal-400: rgba(45, 166, 178, 1);
   --color-teal-500: rgba(33, 128, 141, 1);
   --color-teal-600: rgba(29, 116, 128, 1);
   --color-teal-700: rgba(26, 104, 115, 1);
-  --color-teal-800: rgba(41, 150, 161, 1);
   --color-red-400: rgba(255, 84, 89, 1);
   --color-red-500: rgba(192, 21, 47, 1);
   --color-orange-400: rgba(230, 129, 97, 1);
   --color-orange-500: rgba(168, 75, 47, 1);
-  --color-brown-600-rgb: 94, 82, 64;
-  --color-teal-500-rgb: 33, 128, 141;
-  --color-slate-900-rgb: 19, 52, 59;
-  --color-slate-500-rgb: 98, 108, 113;
-  --color-red-500-rgb: 192, 21, 47;
-  --color-red-400-rgb: 255, 84, 89;
-  --color-orange-500-rgb: 168, 75, 47;
-  --color-orange-400-rgb: 230, 129, 97;
-  --color-bg-1: rgba(59, 130, 246, 0.08);
-  --color-bg-2: rgba(245, 158, 11, 0.08);
-  --color-bg-3: rgba(34, 197, 94, 0.08);
-  --color-bg-4: rgba(239, 68, 68, 0.08);
-  --color-bg-5: rgba(147, 51, 234, 0.08);
-  --color-bg-6: rgba(249, 115, 22, 0.08);
-  --color-bg-7: rgba(236, 72, 153, 0.08);
-  --color-bg-8: rgba(6, 182, 212, 0.08);
-  --color-background: var(--color-cream-50);
-  --color-surface: var(--color-cream-100);
-  --color-text: var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-500);
-  --color-primary: var(--color-teal-500);
-  --color-primary-hover: var(--color-teal-600);
-  --color-primary-active: var(--color-teal-700);
-  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
-  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-  --color-btn-primary-text: var(--color-cream-50);
-  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
-  --color-error: var(--color-red-500);
-  --color-success: var(--color-teal-500);
-  --color-warning: var(--color-orange-500);
-  --color-info: var(--color-slate-500);
-  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
-  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
-  --focus-ring: 0 0 0 3px var(--color-focus-ring);
-  --focus-outline: 2px solid var(--color-primary);
-  --status-bg-opacity: 0.15;
-  --status-border-opacity: 0.25;
-  --color-success-rgb: 33, 128, 141;
-  --color-error-rgb: 192, 21, 47;
-  --color-warning-rgb: 168, 75, 47;
-  --color-info-rgb: 98, 108, 113;
-  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-size-xs: 11px;
-  --font-size-sm: 12px;
-  --font-size-base: 14px;
-  --font-size-md: 14px;
-  --font-size-lg: 16px;
-  --font-size-xl: 18px;
-  --font-size-2xl: 20px;
-  --font-size-3xl: 24px;
-  --font-size-4xl: 30px;
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+
+  /* UI Theme Colors */
+  --color-ui-background: var(--color-blue-50);
+  --color-ui-surface: var(--color-white);
+  --color-ui-text: var(--color-gray-900);
+  --color-ui-text-secondary: var(--color-gray-600);
+  --color-ui-primary: var(--color-blue-500);
+  --color-ui-primary-hover: var(--color-blue-600);
+  --color-ui-border: var(--color-gray-200);
+
+  /* Game Theme Colors (Original) */
+  --color-game-background: var(--color-cream-50);
+  --color-game-surface: var(--color-cream-100);
+  --color-game-text: var(--color-slate-900);
+  --color-game-primary: var(--color-teal-500);
+  --color-game-success: var(--color-teal-500);
+  --color-game-error: var(--color-red-500);
+
+  /* Shadows & Effects */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-button: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+  /* Typography */
+  --font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
-  --font-weight-semibold: 550;
-  --font-weight-bold: 600;
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --letter-spacing-tight: -0.01em;
-  --space-0: 0;
-  --space-1: 1px;
-  --space-2: 2px;
-  --space-4: 4px;
-  --space-6: 6px;
-  --space-8: 8px;
-  --space-10: 10px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-32: 32px;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing & Sizing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
   --radius-sm: 6px;
-  --radius-base: 8px;
-  --radius-md: 10px;
+  --radius-md: 8px;
   --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
-    0 2px 4px -1px rgba(0, 0, 0, 0.02);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
-    0 4px 6px -2px rgba(0, 0, 0, 0.02);
-  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
   --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1280px;
+  --duration-normal: 300ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base styles */
+/* Base Styles */
 html {
-  font-size: var(--font-size-base);
+  font-size: 16px;
   font-family: var(--font-family-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text);
-  background-color: var(--color-background);
+  line-height: 1.5;
+  color: var(--color-game-text);
+  background-color: var(--color-game-background);
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
@@ -143,7 +121,7 @@ body {
   box-sizing: inherit;
 }
 
-/* Typography and buttons - abbreviated for space */
+/* Typography */
 h1,
 h2,
 h3,
@@ -152,29 +130,33 @@ h5,
 h6 {
   margin: 0;
   font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
-  color: var(--color-text);
-  letter-spacing: var(--letter-spacing-tight);
+  line-height: 1.2;
+  color: var(--color-game-text);
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: var(--font-size-4xl);
-}
-h2 {
-  font-size: var(--font-size-3xl);
-}
-h3 {
-  font-size: var(--font-size-2xl);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-bold);
 }
 
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+/* Button Styles */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8) var(--space-16);
-  border-radius: var(--radius-base);
-  font-size: var(--font-size-base);
-  font-weight: 500;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
   line-height: 1.5;
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-standard);
@@ -184,30 +166,565 @@ h3 {
 }
 
 .btn--primary {
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
+  background: rgba(55, 123, 242, 255);
+  color: var(--color-cream-50);
 }
 
 .btn--primary:hover {
-  background: var(--color-primary-hover);
+  background: rgba(30, 84, 222, 255);
 }
 
 .btn--lg {
-  padding: var(--space-10) var(--space-20);
-  font-size: var(--font-size-lg);
-  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  font-size: 1.125rem;
+  border-radius: var(--radius-lg);
 }
 
 .btn--full-width {
   width: 100%;
 }
 
-/* Screen Management */
+/* ==============================================
+   UI SCREENS - BLUE & WHITE THEME
+   ============================================== */
+
+/* Home Screen (Start Screen) */
+#startScreen {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-50) 0%,
+    var(--color-white) 100%
+  );
+  min-height: 100vh;
+}
+
+#startScreen .game-header {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-ui-border);
+  padding: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+#startScreen .game-header h1 {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-600) 0%,
+    var(--color-blue-400) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-2);
+}
+
+#startScreen .game-header p {
+  color: var(--color-ui-text-secondary);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+#startScreen .instructions-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-ui-border);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  color: var(--color-ui-text);
+  padding: 5%;
+}
+
+#startScreen .instructions-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-400) 0%,
+    var(--color-blue-600) 100%
+  );
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+#startScreen .btn--primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-500) 0%,
+    var(--color-blue-600) 100%
+  );
+  color: var(--color-white);
+  box-shadow: var(--shadow-button);
+}
+
+#startScreen .btn--primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-600) 0%,
+    var(--color-blue-700) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+}
+
+/* Level Selection Screen */
+#levelScreen {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-50) 0%,
+    var(--color-white) 100%
+  );
+  min-height: 100vh;
+}
+
+#levelScreen .game-header {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-ui-border);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+#levelScreen .game-header h1 {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-600) 0%,
+    var(--color-blue-400) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.level-selection-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .level-selection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .level-selection-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.level-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--color-ui-border);
+  padding: var(--space-6);
+  text-align: center;
+  transition: all var(--duration-normal) var(--ease-standard);
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  color: var(--color-ui-text);
+}
+
+.level-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-400) 0%,
+    var(--color-blue-600) 100%
+  );
+  transform: scaleX(0);
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.level-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-blue-300);
+}
+
+.level-card:hover::before {
+  transform: scaleX(1);
+}
+
+.level-card h3 {
+  margin-bottom: var(--space-3);
+  font-size: 1.25rem;
+  color: var(--color-blue-700);
+}
+
+.level-card p {
+  margin-bottom: var(--space-2);
+  font-size: 0.875rem;
+  color: var(--color-ui-text-secondary);
+}
+
+.level-card .level-stats {
+  background: var(--color-blue-50);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.level-stats p {
+  margin-bottom: var(--space-1);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-blue-700);
+  font-size: 0.875rem;
+}
+
+.level-stats p:last-child {
+  margin-bottom: 0;
+}
+
+#levelScreen .btn--secondary {
+  background: var(--color-white);
+  color: var(--color-blue-600);
+  border: 2px solid var(--color-blue-200);
+  box-shadow: var(--shadow-button);
+}
+
+#levelScreen .btn--secondary:hover {
+  background: var(--color-blue-50);
+  border-color: var(--color-blue-300);
+  transform: translateY(-1px);
+}
+
+/* Level Unlocking System Styles */
+
+/* Locked level card styling */
+.level-card.level-locked {
+  position: relative;
+  cursor: not-allowed;
+}
+
+.level-card.level-locked::before {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-400) 0%,
+    var(--color-gray-500) 100%
+  );
+}
+
+.level-card.level-locked h3 {
+  color: var(--color-gray-500);
+}
+
+/* Lock indicator */
+.lock-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  z-index: 5;
+  max-width: 200px;
+}
+
+.lock-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-2);
+}
+
+.lock-text {
+  font-size: 0.875rem;
+  color: var(--color-gray-700);
+  line-height: 1.4;
+}
+
+.lock-text strong {
+  color: var(--color-gray-900);
+  font-size: 1rem;
+}
+
+.lock-text small {
+  color: var(--color-gray-600);
+  font-size: 0.75rem;
+}
+
+/* Unlock progress message */
+.unlock-progress-message {
+  background: var(--color-blue-50);
+  border: 1px solid var(--color-blue-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin: var(--space-6) 0;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.unlock-progress-content h3 {
+  color: var(--color-blue-700);
+  margin-bottom: var(--space-3);
+}
+
+.unlock-progress-content p {
+  color: var(--color-blue-600);
+  margin-bottom: var(--space-3);
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--color-gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: var(--space-3) 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-400) 0%,
+    var(--color-blue-600) 100%
+  );
+  transition: width 0.3s ease;
+  border-radius: var(--radius-full);
+}
+
+/* Notification styles */
+.level-locked-notification,
+.level-unlocked-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: var(--space-4);
+}
+
+.notification-content {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-card-hover);
+}
+
+.notification-content.celebration {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-50) 0%,
+    var(--color-white) 100%
+  );
+  border: 2px solid var(--color-blue-300);
+}
+
+.notification-content h2 {
+  color: var(--color-blue-600);
+  margin-bottom: var(--space-2);
+}
+
+.notification-content h3 {
+  color: var(--color-blue-700);
+  margin-bottom: var(--space-4);
+}
+
+.notification-content p {
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-6);
+  line-height: 1.5;
+}
+
+.close-notification {
+  min-width: 120px;
+}
+
+/* High score display in level cards */
+.high-score {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-blue-600);
+  font-size: 0.875rem;
+  margin: var(--space-2) 0 0 0;
+}
+
+/* End Game Screen (Results) */
+#endScreen {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-50) 0%,
+    var(--color-white) 100%
+  );
+  min-height: 100vh;
+}
+
+#endScreen .results-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-ui-border);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  color: var(--color-ui-text);
+  max-width: 600px;
+  padding: 5%;
+}
+
+#endScreen .results-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-400) 0%,
+    var(--color-blue-600) 100%
+  );
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+#endScreen h2 {
+  color: var(--color-blue-700);
+  margin-bottom: var(--space-4);
+}
+
+.results-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+@media (min-width: 768px) {
+  .results-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stat-card {
+  background: var(--color-blue-50);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  text-align: center;
+  border: 1px solid var(--color-blue-200);
+}
+
+.stat-card h4 {
+  font-size: 0.875rem;
+  color: var(--color-ui-text-secondary);
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-card .stat-number {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-blue-600);
+  margin: 0;
+}
+
+#endScreen .btn--primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-500) 0%,
+    var(--color-blue-600) 100%
+  );
+  color: var(--color-white);
+  box-shadow: var(--shadow-button);
+}
+
+#endScreen .btn--primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-600) 0%,
+    var(--color-blue-700) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+}
+
+/* Top Game UI Bar - Blue Theme */
+.game-ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-white) 0%,
+    var(--color-blue-50) 100%
+  );
+  border-bottom: 2px solid var(--color-blue-200);
+  padding: var(--space-3) var(--space-4);
+  z-index: 1000;
+  box-shadow: 0 2px 10px 0 rgba(59, 130, 246, 0.1);
+  min-height: 60px;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(var(--space-2), 3vw, var(--space-6));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-blue-200);
+  box-shadow: var(--shadow-button);
+}
+
+.stat-value {
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-blue-600);
+}
+
+.stat-label {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  color: var(--color-ui-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ==============================================
+   GAME PHASES - ORIGINAL THEME
+   ============================================== */
+
+/* Screen Management for Game */
 .screen {
   display: none;
   min-height: 100vh;
   width: 100%;
-  padding: var(--space-16);
+  padding: 0%;
 }
 
 .screen.active {
@@ -217,101 +734,19 @@ h3 {
   justify-content: center;
 }
 
-/* Game Header */
-.game-header {
-  text-align: center;
-  margin-bottom: var(--space-24);
+/* Keep original game screen background */
+#gameScreen {
+  background-color: var(--color-game-background);
 }
 
-.game-header h1 {
-  font-size: clamp(var(--font-size-2xl), 5vw, var(--font-size-4xl));
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-8);
-  color: var(--color-primary);
-}
-
-/* Instructions and Level Cards */
-.instructions-card,
-.results-card {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
-  padding: clamp(var(--space-16), 4vw, var(--space-32));
-  max-width: 100%;
-  width: 100%;
-  box-shadow: var(--shadow-md);
-  text-align: center;
-}
-
-.level-selection-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-16);
-  max-width: 100%;
-  width: 100%;
-  margin-bottom: var(--space-32);
-}
-
-.level-card {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
-  padding: clamp(var(--space-16), 4vw, var(--space-24));
-  text-align: center;
-  transition: all var(--duration-normal) var(--ease-standard);
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-}
-
-.level-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
-}
-
-/* Game UI */
-.game-ui {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-12) var(--space-16);
-  z-index: 1000;
-  box-shadow: var(--shadow-sm);
-  min-height: 60px;
-}
-
-.game-stats {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: clamp(var(--space-8), 3vw, var(--space-32));
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-}
-
-.stat-value {
-  font-size: clamp(var(--font-size-sm), 2.5vw, var(--font-size-lg));
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
-
-/* Phase Containers */
+/* Phase Containers - Original Styling */
 .phase-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   min-height: calc(100vh - 80px);
-  padding: var(--space-8) var(--space-8) var(--space-16);
+  padding: var(--space-2) var(--space-2) var(--space-4);
   transition: opacity var(--duration-normal) var(--ease-standard);
   overflow-y: auto;
 }
@@ -322,27 +757,27 @@ h3 {
 
 .phase-instruction {
   text-align: center;
-  margin-bottom: var(--space-16);
-  margin-top: var(--space-32);
-  padding-top: var(--space-16);
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-8);
+  padding-top: var(--space-4);
 }
 
 .phase-timer {
-  font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-2xl));
+  font-size: clamp(1.125rem, 4vw, 1.5rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-  background-color: var(--color-bg-1);
+  color: rgba(43, 103, 234, 255);
+  background-color: rgba(204, 208, 218, 0.164);
   border-radius: var(--radius-full);
   width: clamp(50px, 10vw, 70px);
   height: clamp(50px, 10vw, 70px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto var(--space-16);
-  border: 2px solid var(--color-primary);
+  margin: 0 auto var(--space-4);
+  border: 2px solid rgba(43, 103, 234, 255);
 }
 
-/* Enhanced Responsive Dot Grid */
+/* Enhanced Responsive Dot Grid - Original Styling */
 .dot-grid {
   display: block;
   width: 100%;
@@ -351,9 +786,10 @@ h3 {
   background-color: #fefefe;
   border: clamp(2px, 0.5vw, 4px) solid #000000;
   border-radius: var(--radius-lg);
-  padding: clamp(var(--space-6), 1.5vw, var(--space-12));
+  padding: clamp(var(--space-1), 1.5vw, var(--space-3));
   position: relative;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
   margin: 0 auto;
   box-sizing: border-box;
   max-height: calc(100vh - 250px);
@@ -379,33 +815,32 @@ h3 {
 }
 
 .dot.clicked {
-  background-color: var(--color-success);
+  background-color: var(--color-game-success);
   transform: scale(1.2);
-  border: 2px solid var(--color-success);
+  border: 2px solid var(--color-game-success);
 }
 
 .dot.wrong {
-  background-color: var(--color-error);
+  background-color: var(--color-game-error);
   transform: scale(1.2);
-  border: 2px solid var(--color-error);
+  border: 2px solid var(--color-game-error);
 }
 
-/* ENHANCED SYMMETRY PHASE - HARDER RECOGNITION */
+/* Symmetry Phase - Original Styling */
 .symmetry-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-24);
+  gap: var(--space-6);
 }
 
 .symmetry-grids {
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
+  gap: var(--space-4);
   align-items: center;
 }
 
-/* Critical Modification: Removed borders and gaps for harder pattern recognition */
 .symmetry-grid {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -413,35 +848,32 @@ h3 {
   width: clamp(200px, 60vw, 320px);
   height: clamp(200px, 60vw, 320px);
   border: 2px solid #000000;
-  border-radius: var(--radius-base);
+  border-radius: var(--radius-md);
   background-color: #ffffff;
-  padding: clamp(var(--space-2), 0.5vw, var(--space-4));
-  gap: 0; /* REMOVED gaps to make pattern recognition significantly harder */
-  box-shadow: var(--shadow-md);
+  padding: clamp(var(--space-1), 0.5vw, var(--space-2));
+  gap: 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
 }
 
-/* Critical Modification: Removed cell borders for much harder recognition */
 .grid-cell {
-  border: none; /* REMOVED: border: 1px solid #cccccc; - Makes symmetry detection much harder */
+  border: none;
   background-color: #ffffff;
-  border-radius: clamp(var(--radius-sm), 1vw, var(--radius-base));
+  border-radius: clamp(var(--radius-sm), 1vw, var(--radius-md));
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   min-height: clamp(20px, 5vw, 35px);
   min-width: clamp(20px, 5vw, 35px);
-  /* Add minimal separation without visible borders */
   margin: clamp(0.5px, 0.1vw, 1px);
 }
 
-/* Filled squares (black squares) */
 .grid-cell.filled {
   background-color: #000000;
-  border: none; /* Ensure no border on filled cells */
+  border: none;
 }
 
-/* Small black dots for non-filled cells */
 .grid-cell .cell-dot {
   width: clamp(3px, 1.2vw, 6px);
   height: clamp(3px, 1.2vw, 6px);
@@ -453,58 +885,82 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-/* Remove visual hints that made pattern recognition easier */
-.symmetry-grid[data-level="1"],
-.symmetry-grid[data-level="2"],
-.symmetry-grid[data-level="3"],
-.symmetry-grid[data-level="4"] {
-  border-color: #000000; /* Consistent black border - no level hints */
-}
-
-/* Remove hover effects that could assist recognition */
-@media (hover: hover) {
-  .symmetry-grid:hover {
-    box-shadow: var(--shadow-md); /* No special hover effects */
-  }
-}
-
-/* Symmetry buttons */
 .symmetry-buttons {
   display: flex;
-  gap: var(--space-16);
+  gap: var(--space-4);
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .symmetry-buttons .btn {
-  padding: clamp(var(--space-8), 2vw, var(--space-12))
-    clamp(var(--space-20), 5vw, var(--space-32));
-  font-size: clamp(var(--font-size-md), 3vw, var(--font-size-xl));
+  padding: clamp(var(--space-2), 2vw, var(--space-3))
+    clamp(var(--space-5), 5vw, var(--space-8));
+  font-size: clamp(1rem, 3vw, 1.25rem);
   min-width: clamp(80px, 20vw, 120px);
   border-radius: var(--radius-lg);
 }
 
 .symmetry-buttons #yesButton,
 .symmetry-buttons #noButton {
-  background: #1e40af;
+  background: rgba(43, 103, 234, 255);
   color: white;
 }
 
-/* Responsive dot sizing for all devices */
+/* Responsive Design */
 @media (max-width: 480px) {
   .grid-cell .cell-dot {
     width: 4px;
     height: 4px;
   }
+
   .dot {
     min-width: 24px;
     min-height: 24px;
   }
+
   .symmetry-grid {
     width: clamp(180px, 85vw, 250px);
     height: clamp(180px, 85vw, 250px);
     gap: 0;
-    padding: var(--space-2);
+    padding: var(--space-1);
+  }
+
+  /* UI Screens mobile adjustments */
+  #startScreen .game-header,
+  #startScreen .instructions-card,
+  #levelScreen .game-header,
+  #endScreen .results-card {
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .level-card {
+    padding: var(--space-4);
+  }
+
+  .results-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  /* Level unlocking system mobile adjustments */
+  .lock-indicator {
+    max-width: 160px;
+    padding: var(--space-3);
+  }
+
+  .lock-icon {
+    font-size: 1.5rem;
+  }
+
+  .notification-content {
+    padding: var(--space-6);
+    margin: var(--space-4);
+  }
+
+  .unlock-progress-message {
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
   }
 }
 
@@ -513,10 +969,12 @@ h3 {
     width: 5px;
     height: 5px;
   }
+
   .symmetry-grids {
     flex-direction: row;
-    gap: var(--space-24);
+    gap: var(--space-6);
   }
+
   .symmetry-grid {
     width: clamp(220px, 40vw, 280px);
     height: clamp(220px, 40vw, 280px);
@@ -528,41 +986,37 @@ h3 {
     width: 6px;
     height: 6px;
   }
+
   .symmetry-grids {
     flex-direction: row;
-    gap: var(--space-32);
-  }
-  .level-selection-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-24);
-    max-width: 1000px;
+    gap: var(--space-8);
   }
 }
 
 @media (min-width: 1025px) {
-  .level-selection-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
   .dot-grid {
     width: 500px;
     height: 375px;
   }
+
   .dot {
     width: 16px;
     height: 16px;
     min-width: 16px;
     min-height: 16px;
   }
+
   .symmetry-grid {
     width: 320px;
     height: 320px;
   }
 }
 
-/* Additional utility classes */
+/* Utility Classes */
 .hidden {
   display: none;
 }
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -575,7 +1029,7 @@ h3 {
   border-width: 0;
 }
 
-/* Animation classes for smooth transitions */
+/* Animation classes */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -591,19 +1045,45 @@ h3 {
   animation: fadeIn var(--duration-normal) var(--ease-standard);
 }
 
-/* Ensure accessibility */
+/* Accessibility */
 :focus-visible {
-  outline: var(--focus-outline);
+  outline: 2px solid var(--color-ui-primary);
   outline-offset: 2px;
 }
 
-/* Dark mode support */
+/* Dark mode support for UI screens only */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--color-charcoal-700);
-    --color-surface: var(--color-charcoal-800);
-    --color-text: var(--color-gray-200);
-    --color-primary: var(--color-teal-300);
-    --color-btn-primary-text: var(--color-slate-900);
+  #startScreen,
+  #levelScreen,
+  #endScreen {
+    background: linear-gradient(
+      135deg,
+      var(--color-gray-900) 0%,
+      var(--color-gray-800) 100%
+    );
+  }
+
+  #startScreen .game-header,
+  #startScreen .instructions-card,
+  #levelScreen .game-header,
+  .level-card,
+  #endScreen .results-card {
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-700);
+    color: var(--color-gray-100);
+  }
+
+  .game-ui {
+    background: linear-gradient(
+      135deg,
+      var(--color-gray-800) 0%,
+      var(--color-gray-900) 100%
+    );
+    border-bottom-color: var(--color-gray-700);
+  }
+
+  .stat-item {
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-600);
   }
 }
