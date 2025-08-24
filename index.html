@@ -2,23 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
-    />
-    <title>Grid Challenge Game - Test Your Memory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Challenge Game - Enhanced Difficulty</title>
     <link rel="stylesheet" href="style.css" />
-    <meta
-      name="description"
-      content="Test your visual memory and pattern recognition skills with the Grid Challenge Game"
-    />
-    <meta name="theme-color" content="#218085" />
   </head>
   <body>
     <!-- Start Screen -->
     <div id="startScreen" class="screen active">
       <div class="game-header">
-        <h1>Grid Challenge Game</h1>
+        <h1>Grid Challenge</h1>
         <p class="game-subtitle">
           Test your visual memory and pattern recognition skills
         </p>
@@ -28,31 +20,31 @@
         <h2>How to Play</h2>
         <div class="instructions-content">
           <div class="instruction-item">
-            <h3>🔍 Memory Phase</h3>
+            <h3>Memory Phase</h3>
             <p>
               Watch highlighted dots (in black) and memorize their positions
             </p>
           </div>
-
           <div class="instruction-item">
-            <h3>🔄 Symmetry Phase</h3>
+            <h3>Symmetry Phase</h3>
             <p>Determine if two grids are symmetrical (YES/NO)</p>
           </div>
-
           <div class="instruction-item">
-            <h3>🎯 Recall Phase</h3>
+            <h3>Recall Phase</h3>
             <p>Click dots in the same sequence you saw them highlighted</p>
           </div>
+        </div>
 
-          <div class="scoring-info">
-            <h3>Scoring</h3>
-            <p>
-              Earn 1 point only when ALL phases in a round are completed
-              correctly. No partial credit awarded.
-            </p>
-          </div>
+        <div class="scoring-info">
+          <h3>Scoring System</h3>
+          <p>
+            Earn 1 point only when ALL phases in a round are completed
+            correctly. No partial credit awarded.
+          </p>
+        </div>
 
-          <div class="duration-info">Duration: <strong>6 minutes</strong></div>
+        <div class="duration-info">
+          <strong>Game Duration: 6 Minutes</strong>
         </div>
 
         <button
@@ -67,10 +59,7 @@
     <!-- Level Selection Screen -->
     <div id="levelScreen" class="screen">
       <div class="game-header">
-        <h1>Choose Your Challenge</h1>
-        <p class="game-subtitle">
-          Choose your challenge level for the 6-minute test
-        </p>
+        <h1>Choose your challenge level for the 6-minute test</h1>
       </div>
 
       <div class="level-selection-grid">
@@ -124,16 +113,18 @@
       </div>
 
       <div class="level-selection-footer">
-        <p>High Score: <span id="highScoreValue">0</span></p>
         <button id="backToStartButton" class="btn btn--secondary">
-          Back to Instructions
+          ← Back to Instructions
         </button>
+        <p style="margin-top: 16px; color: var(--color-text-secondary)">
+          High Score: <span id="highScoreValue">0</span>
+        </p>
       </div>
     </div>
 
     <!-- Game Screen -->
     <div id="gameScreen" class="screen">
-      <!-- Game UI Bar -->
+      <!-- Game UI Header -->
       <div class="game-ui">
         <div class="game-stats">
           <div class="stat-item">
@@ -176,8 +167,8 @@
             <div id="rightGrid" class="symmetry-grid"></div>
           </div>
           <div class="symmetry-buttons">
-            <button id="yesButton" class="btn btn--lg">YES</button>
-            <button id="noButton" class="btn btn--lg">NO</button>
+            <button id="yesButton" class="btn btn--primary btn--lg">YES</button>
+            <button id="noButton" class="btn btn--primary btn--lg">NO</button>
           </div>
         </div>
       </div>
@@ -185,26 +176,20 @@
       <!-- Identification Phase -->
       <div id="identificationPhase" class="phase-container hidden">
         <div class="phase-instruction">
-          <h2>Click the dots in the correct sequence</h2>
+          <h2>Click the dots in the sequence you memorized</h2>
           <div class="phase-timer" id="identifyPhaseTimer">12</div>
         </div>
         <div id="identifyGrid" class="dot-grid"></div>
         <div class="sequence-info">
-          Sequence: <span id="sequenceDisplay">-</span>
+          <p>Sequence: <span id="sequenceDisplay">-</span></p>
         </div>
       </div>
     </div>
 
     <!-- End Screen -->
     <div id="endScreen" class="screen">
-      <div class="game-header">
-        <h1>Game Complete!</h1>
-        <p class="game-subtitle">Here are your results</p>
-      </div>
-
       <div class="results-card">
-        <h2>Final Results</h2>
-
+        <h2>Here are your results</h2>
         <div class="results-stats">
           <div class="result-stat">
             <span class="result-label">Final Score:</span>
@@ -233,7 +218,9 @@
         </div>
 
         <div class="performance-message">
-          <p id="performanceText">Great job!</p>
+          <p id="performanceText">
+            Great job! Keep practicing to improve your skills.
+          </p>
         </div>
 
         <button
