@@ -1087,3 +1087,34 @@ h3 {
     border-color: var(--color-gray-600);
   }
 }
+/* Fix for instruction overlapping with game UI on mobile */
+@media (max-width: 480px) {
+  .phase-container {
+    padding-top: 80px; /* Clear the fixed game-ui header */
+    min-height: calc(
+      100vh - 80px
+    ); /* Adjust min-height to account for header */
+  }
+
+  .phase-instruction {
+    margin-top: 16px; /* Additional spacing for better visual separation */
+  }
+
+  .phase-timer {
+    margin: 16px auto 16px; /* Consistent spacing around timer */
+  }
+}
+
+/* Additional fix for tablets */
+@media (max-width: 768px) {
+  .phase-container {
+    padding-top: 80px;
+  }
+}
+
+/* Ensure game UI has consistent height across devices */
+.game-ui {
+  min-height: 60px;
+  /* Add consistent box-sizing if not already present */
+  box-sizing: border-box;
+}
